@@ -2,22 +2,23 @@ package dev.domain;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 public class Student {
 
     @NotNull
-    @NumberFormat
-    private Long id;
+    private Integer id;
 
-    @NotNull
+    @NotBlank
     @Length(max = 100)
     private String name;
 
-    @NotNull
+    @NotBlank
     @Email
     @Length(max = 100)
     private String email;
@@ -25,27 +26,39 @@ public class Student {
     @NotNull
     @Past
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Min(value = 6570, message = "Must be at least 18 years old")
     private LocalDate dateOfBirth;
 
     @NotNull
-    private Gender gender;
+    private String gender;
 
-    @NotNull
+    @NotBlank
     @Length(max = 10)
     private String quota = "N/A";
 
-    @NotNull
+    @NotBlank
     @Length(max = 100)
     private String country = "Bangladeshi";
 
-    // Getters and setters
+    public Student() {
+    }
 
-    public Long getId() {
+    public Student(Integer id, String name, String email, LocalDate dateOfBirth, String  gender, String quota, String country) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.quota = quota;
+        this.country = country;
+    }
+
+    // Getters and setters for all fields
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -73,11 +86,11 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String  gender) {
         this.gender = gender;
     }
 

@@ -1,7 +1,9 @@
-<%@ page contentType="text/html" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
+    <title>Student Details</title>
     <style>
         body {
             background-color: #fee2e2;
@@ -35,9 +37,10 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        h3 {
+        h2 {
             color: #7f1d1d;
         }
 
@@ -55,16 +58,6 @@
             padding: 10px;
             text-align: left;
         }
-
-        hr {
-            border: 1px solid #ccc;
-            margin-top: 20px;
-        }
-
-        p {
-            margin-top: 10px;
-            color: #7f1d1d;
-        }
     </style>
 </head>
 <body>
@@ -76,40 +69,40 @@
 </div>
 
 <div class="content-container">
-    <h3>Registration Success</h3>
+    <h2>Student Details</h2>
 
-    <hr>
-
-    <table>
-        <tr>
-            <th>Field</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>Full Name</td>
-            <td>${student.name}</td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>${student.email}</td>
-        </tr>
-        <tr>
-            <td>Date Of Birth</td>
-            <td>${student.dateOfBirth}</td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>${student.gender}</td>
-        </tr>
-        <tr>
-            <td>Quota</td>
-            <td>${student.quota}</td>
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td>${student.country}</td>
-        </tr>
-    </table>
+    <c:if test="${not empty student}">
+        <table>
+            <tr>
+                <td>ID:</td>
+                <td>${student.id}</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>${student.name}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>${student.email}</td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td>${student.dateOfBirth}</td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>${student.gender}</td>
+            </tr>
+            <tr>
+                <td>Quota:</td>
+                <td>${student.quota}</td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td>${student.country}</td>
+            </tr>
+        </table>
+    </c:if>
 </div>
 
 </body>
